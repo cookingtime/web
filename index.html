@@ -5,485 +5,484 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooking Time - Perfect Timing for Every Meal</title>
     <style>
+        :root {
+            --bg: #f3f7fb;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --brand: #2563eb;
+            --brand-strong: #1d4ed8;
+            --line: #dbe4ef;
+            --shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+            --radius: 16px;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
         .container {
-            max-width: 1200px;
+            width: min(1120px, 92vw);
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--line);
         }
 
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 24px;
-            margin: 0 auto 20px;
+        .topbar-inner {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 0;
+        }
+
+        .brand {
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: var(--brand-strong);
+            white-space: nowrap;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .nav a:hover {
+            color: var(--brand-strong);
+        }
+
+        .hero {
+            position: relative;
+            padding: 92px 0 84px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 0% 0%, #dbeafe 0, transparent 48%),
+                radial-gradient(circle at 100% 100%, #bfdbfe 0, transparent 52%),
+                linear-gradient(135deg, #f8fbff 0%, #eef5ff 100%);
+        }
+
+        .hero-content {
+            max-width: 760px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.82rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--brand-strong);
+            background: #dbeafe;
+            border: 1px solid #bfdbfe;
+            border-radius: 999px;
+            padding: 6px 12px;
+            margin-bottom: 14px;
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 700;
+            font-size: clamp(2rem, 4.5vw, 3.3rem);
+            line-height: 1.14;
+            margin-bottom: 16px;
         }
 
-        .tagline {
-            font-size: 1.3em;
-            opacity: 0.95;
-            margin-bottom: 20px;
+        .hero p {
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2vw, 1.2rem);
         }
 
-        .description {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
+        .hero-actions {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        /* Features Section */
-        .features {
-            background: white;
-            padding: 80px 20px;
+        .btn {
+            border-radius: 12px;
+            padding: 11px 16px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--brand);
+            color: #fff;
+            box-shadow: 0 10px 26px rgba(37, 99, 235, 0.24);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-strong);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            border-color: #cbd5e1;
+            color: #1e293b;
+        }
+
+        section {
+            padding: 78px 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-            color: #1f2937;
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            margin-bottom: 14px;
         }
 
-        .features-grid {
+        .section-subtitle {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 36px;
+            color: var(--text-muted);
+        }
+
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
         }
 
-        .feature-card {
-            background: #f9fafb;
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #e5e7eb;
-            transition: transform 0.2s;
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: var(--shadow);
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .card h3 {
+            color: var(--brand-strong);
+            font-size: 1.12rem;
+            margin-bottom: 8px;
         }
 
-        .feature-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
+        .card p {
+            color: var(--text-muted);
         }
 
-        .feature-card h3 {
-            color: #3B82F6;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-
-        /* Pro Features */
-        .pro-features {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 80px 20px;
-        }
-
-        .pro-badge {
-            display: inline-block;
-            background: #3B82F6;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 20px;
+        .pro-section {
+            background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%);
+            border-top: 1px solid #dbeafe;
+            border-bottom: 1px solid #dbeafe;
         }
 
         .pro-list {
             list-style: none;
-            max-width: 600px;
-            margin: 30px auto;
+            max-width: 760px;
+            margin: 0 auto;
+            display: grid;
+            gap: 12px;
         }
 
         .pro-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            display: flex;
-            align-items: center;
-        }
-
-        .pro-list li:before {
-            content: "✓";
-            color: #3B82F6;
-            font-weight: bold;
-            font-size: 1.5em;
-            margin-right: 15px;
-        }
-
-        /* FAQ Section */
-        .faq {
-            background: white;
-            padding: 80px 20px;
-        }
-
-        .faq-item {
-            max-width: 800px;
-            margin: 0 auto 30px;
-            background: #f9fafb;
-            padding: 25px;
+            background: var(--surface);
+            border: 1px solid #cfe0ff;
             border-radius: 12px;
-            border-left: 4px solid #3B82F6;
+            padding: 16px 18px;
         }
 
-        .faq-item h3 {
-            color: #1f2937;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-
-        .faq-item p {
-            color: #4b5563;
-            line-height: 1.7;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #1f2937;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .contact h2 {
-            margin-bottom: 20px;
-        }
-
-        .contact a {
-            color: #60a5fa;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-
-        .contact a:hover {
-            text-decoration: underline;
-        }
-
-        /* Privacy Section */
-        .privacy {
-            background: #f9fafb;
-            padding: 80px 20px;
-        }
-
-        .privacy-content {
-            max-width: 800px;
+        .faq-list {
+            display: grid;
+            gap: 14px;
+            max-width: 860px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .privacy-content h3 {
-            color: #3B82F6;
-            margin-top: 30px;
-            margin-bottom: 15px;
+        .privacy-snippet {
+            max-width: 860px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
         }
 
-        .privacy-content h3:first-child {
-            margin-top: 0;
+        .privacy-snippet h3 {
+            color: var(--brand-strong);
+            margin-bottom: 8px;
         }
 
-        .privacy-content p, .privacy-content ul {
-            color: #4b5563;
-            margin-bottom: 15px;
-            line-height: 1.8;
+        .privacy-snippet p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
         }
 
-        .privacy-content ul {
-            padding-left: 30px;
+        .contact {
+            background: #0f172a;
+            color: #dbe3f2;
+            padding: 74px 0;
         }
 
-        /* Footer */
-        footer {
-            background: #111827;
-            color: #9ca3af;
+        .contact-card {
+            max-width: 760px;
+            margin: 0 auto;
             text-align: center;
-            padding: 30px 20px;
+            padding: 28px;
+            background: #111c34;
+            border: 1px solid #22304d;
+            border-radius: var(--radius);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
+        .contact-card h2 {
+            margin-bottom: 10px;
+            color: #f8fafc;
+        }
+
+        .contact-card p {
+            color: #9fb1d0;
+        }
+
+        .contact-card a {
+            display: inline-block;
+            margin-top: 18px;
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #0b1222;
+            color: #94a3b8;
+            text-align: center;
+            padding: 22px 14px;
+            border-top: 1px solid #1f2b44;
+        }
+
+        @media (max-width: 900px) {
+            .topbar-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
 
-            .tagline {
-                font-size: 1.1em;
+            .nav {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            section {
+                padding: 58px 0;
             }
 
-            .section-title {
-                font-size: 2em;
+            .hero {
+                padding: 72px 0 64px;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
+            .card,
+            .privacy-snippet,
+            .contact-card {
+                padding: 18px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-actions {
+                width: 100%;
+            }
+
+            .hero-actions a {
+                width: min(360px, 100%);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .btn {
+                transition: none;
+            }
+
+            .btn:hover {
+                transform: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="app-icon">🍳</div>
-            <h1>Cooking Time</h1>
-            <p class="tagline">Perfect Timing for Every Meal</p>
-            <p class="description">
-                Plan your meal timeline with precision. Coordinate multiple dishes, set smart timers,
-                and get notifications for each cooking step so everything finishes at exactly the right time.
-            </p>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="#top" class="brand">Cooking Time</a>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="#pro">Pro</a>
+                <a href="#faq">FAQ</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
     </header>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Features That Make Cooking Easier</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3>Visual Timeline</h3>
-                    <p>See your entire meal plan at a glance. Add dishes with their prep and cook times, and watch them arrange automatically on a timeline.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Smart Notifications</h3>
-                    <p>Get timely alerts for each cooking step. Never miss when it's time to start chopping vegetables or flip that steak.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🍽️</div>
-                    <h3>Multi-Dish Coordination</h3>
-                    <p>Coordinate timing for appetizers, mains, and sides. Everything finishes cooking at the perfect moment for serving.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Step-by-Step Cooking</h3>
-                    <p>Break down each dish into detailed steps. Track prep work, cooking stages, and resting times with individual timers.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Beautiful Interface</h3>
-                    <p>Clean, modern design that's easy to use even while your hands are busy in the kitchen. Light and dark modes available.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Always Accessible</h3>
-                    <p>Works completely offline. All your timers and meal plans are stored locally on your device for instant access.</p>
+    <main id="top">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">iOS App</span>
+                    <h1>Perfect Timing for Every Meal</h1>
+                    <p>
+                        Plan prep, cooking, and resting steps in one timeline so every dish is ready at the right moment.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#features">Explore Features</a>
+                        <a class="btn btn-secondary" href="privacy.html">Read Full Privacy Policy</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pro Features -->
-    <section class="pro-features">
-        <div class="container">
-            <div style="text-align: center;">
-                <span class="pro-badge">PRO FEATURES</span>
-                <h2 class="section-title">Unlock Your Full Cooking Potential</h2>
-                <p style="max-width: 600px; margin: 0 auto 20px; color: #4b5563;">
-                    Upgrade to Pro with a one-time purchase and get lifetime access to premium features.
+        <section id="features">
+            <div class="container">
+                <h2 class="section-title">Features That Make Cooking Easier</h2>
+                <p class="section-subtitle">
+                    Everything is designed to reduce kitchen stress and keep multi-dish meals on track.
                 </p>
+                <div class="feature-grid">
+                    <article class="card">
+                        <h3>Visual Timeline</h3>
+                        <p>See your meal plan at a glance and know exactly when each dish should start.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Smart Notifications</h3>
+                        <p>Get local alerts for each cooking step so nothing is missed.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Multi-Dish Coordination</h3>
+                        <p>Coordinate appetizers, mains, and sides to finish together.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Step-by-Step Cooking</h3>
+                        <p>Break each dish into prep and cook stages with focused timers.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Clean Interface</h3>
+                        <p>Simple controls and clear states make it easy to use while cooking.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Offline Ready</h3>
+                        <p>Your timelines and alerts work without internet access.</p>
+                    </article>
+                </div>
             </div>
-            <ul class="pro-list">
-                <li><strong>Unlimited Dishes</strong> - Add as many dishes as you need to your timeline</li>
-                <li><strong>Unlimited Cooking Steps</strong> - Break down each dish into detailed step-by-step instructions</li>
-                <li><strong>Saved Collections</strong> - Save and reuse your favorite meal timelines</li>
-                <li><strong>Custom Notification Sounds</strong> - Choose from multiple notification sounds for different alerts</li>
-            </ul>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-
-            <div class="faq-item">
-                <h3>How do I plan a meal?</h3>
-                <p>
-                    Start by setting your target serving time. Then add each dish you're preparing with its cooking and prep times.
-                    The app automatically arranges everything on a timeline, showing you exactly when to start each step so everything
-                    finishes at the perfect time.
+        <section id="pro" class="pro-section">
+            <div class="container">
+                <h2 class="section-title">Cooking Time Pro</h2>
+                <p class="section-subtitle">
+                    Upgrade with a one-time purchase for lifetime access to premium tools.
                 </p>
-            </div>
-
-            <div class="faq-item">
-                <h3>How do notifications work?</h3>
-                <p>
-                    Cooking Time uses local notifications that run directly on your device. You'll receive alerts when it's time to
-                    start each cooking step. No internet connection required, and your data never leaves your device.
-                </p>
-            </div>
-
-            <div class="faq-item">
-                <h3>What's included in Pro?</h3>
-                <p>
-                    Pro unlocks unlimited dishes and cooking steps (free version has limits), the ability to save and reuse your
-                    favorite meal timelines, and custom notification sounds. It's a one-time purchase with lifetime access.
-                </p>
-            </div>
-
-            <div class="faq-item">
-                <h3>How do I restore my Pro purchase?</h3>
-                <p>
-                    If you purchased Pro and need to restore it on a new device, open the app and tap the upgrade screen.
-                    At the bottom, you'll find a "Restore Purchases" button. Make sure you're signed in with the same Apple ID
-                    you used to make the purchase.
-                </p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Can I save my favorite meal timelines?</h3>
-                <p>
-                    Yes! With Cooking Time Pro, you can save unlimited meal collections. This is perfect for recurring dinners,
-                    holiday meals, or any combination of dishes you make regularly. Save once, reuse forever.
-                </p>
-            </div>
-
-            <div class="faq-item">
-                <h3>How accurate are the timers?</h3>
-                <p>
-                    Cooking Time uses your device's system time, which is highly accurate. Timers continue to run even if you
-                    close the app, and notifications will trigger at the exact scheduled time.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Privacy Policy -->
-    <section class="privacy" id="privacy">
-        <div class="container">
-            <h2 class="section-title">Privacy Policy</h2>
-            <div class="privacy-content">
-                <p><strong>Last Updated:</strong> January 2026</p>
-
-                <h3>Information We Collect</h3>
-                <p>
-                    Cooking Time is designed with your privacy in mind. We collect minimal information:
-                </p>
-                <ul>
-                    <li>Meal timelines, dishes, and cooking steps you create (stored locally on your device)</li>
-                    <li>App preferences and settings (stored locally on your device)</li>
-                    <li>In-app purchase information (processed securely through Apple)</li>
+                <ul class="pro-list">
+                    <li><strong>Unlimited Dishes:</strong> Add as many dishes as your meal needs.</li>
+                    <li><strong>Unlimited Steps:</strong> Build detailed workflows without limits.</li>
+                    <li><strong>Saved Collections:</strong> Reuse favorite plans for recurring meals.</li>
+                    <li><strong>Custom Sounds:</strong> Assign different sounds to important alerts.</li>
                 </ul>
-
-                <h3>How We Use Your Information</h3>
-                <p>
-                    All cooking data, timelines, and preferences are stored locally on your device. We do not:
-                </p>
-                <ul>
-                    <li>Collect or store your personal information on our servers</li>
-                    <li>Track your app usage or cooking habits</li>
-                    <li>Share your data with third parties</li>
-                    <li>Use analytics or tracking tools</li>
-                </ul>
-
-                <h3>Notifications</h3>
-                <p>
-                    Cooking Time uses local notifications to alert you when it's time to start cooking steps. These notifications
-                    are processed entirely on your device and do not involve any data transmission.
-                </p>
-
-                <h3>In-App Purchases</h3>
-                <p>
-                    Pro feature purchases are processed securely through Apple's App Store. We do not store your payment information.
-                    Purchase data is managed by Apple in accordance with their privacy policy.
-                </p>
-
-                <h3>Data Security</h3>
-                <p>
-                    Since all your data is stored locally on your device, you have complete control over it. The app does not
-                    require an internet connection to function, and your cooking plans never leave your device unless you choose
-                    to back them up through iCloud (managed by Apple).
-                </p>
-
-                <h3>Children's Privacy</h3>
-                <p>
-                    Cooking Time does not knowingly collect any personal information from children. The app is designed for general
-                    audiences and does not include features directed at children under 13.
-                </p>
-
-                <h3>Changes to This Policy</h3>
-                <p>
-                    We may update this privacy policy from time to time. Any changes will be posted on this page with an updated
-                    revision date.
-                </p>
-
-                <h3>Contact Us</h3>
-                <p>
-                    If you have questions about this privacy policy or how we handle your information, please contact us at
-                    <a href="mailto:support@usefulproducts.zohodesk.com" style="color: #3B82F6;">support@usefulproducts.zohodesk.com</a>
-                </p>
-
-                <h3>Your Rights</h3>
-                <p>
-                    You can delete all your data at any time by deleting the app from your device. Since we don't store your data
-                    on our servers, this completely removes all information associated with your use of Cooking Time.
-                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact">
+        <section id="faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <article class="card">
+                        <h3>How do I plan a meal?</h3>
+                        <p>Set your serving time, add dishes and durations, and the app builds the schedule automatically.</p>
+                    </article>
+                    <article class="card">
+                        <h3>How do notifications work?</h3>
+                        <p>Notifications are local to your device and work even when the app is not open.</p>
+                    </article>
+                    <article class="card">
+                        <h3>What is included in Pro?</h3>
+                        <p>Pro unlocks unlimited dishes and steps, saved collections, and custom alert sounds.</p>
+                    </article>
+                    <article class="card">
+                        <h3>How do I restore my purchase?</h3>
+                        <p>Use the app&apos;s restore purchase option while signed in with the same Apple ID.</p>
+                    </article>
+                    <article class="card">
+                        <h3>How accurate are timers?</h3>
+                        <p>Timers use your device system time and continue running when the app is backgrounded.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="privacy">
+            <div class="container">
+                <h2 class="section-title">Privacy</h2>
+                <div class="privacy-snippet">
+                    <h3>Data Stays On Your Device</h3>
+                    <p>
+                        Cooking Time is built around local data storage. We do not track usage analytics, collect personal identifiers,
+                        or run third-party ad/analytics SDKs.
+                    </p>
+                    <p>
+                        Read the complete policy on the dedicated page for all Useful Products apps.
+                    </p>
+                    <a class="btn btn-secondary" href="privacy.html">Open Full Privacy Policy</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="contact" class="contact">
         <div class="container">
-            <h2>Need Help?</h2>
-            <p>We're here to help! Reach out to our support team:</p>
-
-            
-            
-            <p style="margin-top: 20px;">
+            <div class="contact-card">
+                <h2>Need Help?</h2>
+                <p>For support questions, reach out to the Useful Products team.</p>
                 <a href="mailto:customer-care@useful-products.odoo.com">customer-care@useful-products.odoo.com</a>
-            </p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Cooking Time. All rights reserved.</p>
-            <p style="margin-top: 10px;">Made with ❤️ for home cooks everywhere</p>
-        </div>
+        <p>&copy; 2026 Cooking Time. All rights reserved.</p>
     </footer>
 </body>
 </html>
