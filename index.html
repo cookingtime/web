@@ -6,16 +6,19 @@
     <title>Cooking Time - Perfect Timing for Every Meal</title>
     <style>
         :root {
-            --bg: #f3f7fb;
+            --bg: #f7f5f1;
             --surface: #ffffff;
-            --surface-soft: #f8fafc;
-            --text: #0f172a;
-            --text-muted: #475569;
-            --brand: #2563eb;
-            --brand-strong: #1d4ed8;
-            --line: #dbe4ef;
-            --shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
-            --radius: 16px;
+            --surface-soft: #fbfaf7;
+            --text: #1d1b18;
+            --text-muted: #655f57;
+            --brand: #d9480f;
+            --brand-strong: #b33b0d;
+            --accent: #0f766e;
+            --accent-soft: #d7f0eb;
+            --gold: #b7791f;
+            --line: #e4ded4;
+            --shadow: 0 18px 48px rgba(51, 39, 24, 0.10);
+            --radius: 8px;
         }
 
         * {
@@ -32,7 +35,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.65;
+            line-height: 1.58;
         }
 
         a {
@@ -49,8 +52,8 @@
             position: sticky;
             top: 0;
             z-index: 30;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            background: rgba(247, 245, 241, 0.9);
             border-bottom: 1px solid var(--line);
         }
 
@@ -63,78 +66,138 @@
         }
 
         .brand {
-            font-weight: 700;
-            letter-spacing: 0.01em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
             color: var(--brand-strong);
             white-space: nowrap;
+        }
+
+        .brand-mark {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: var(--brand);
+            box-shadow: inset 0 -8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .brand-mark::before,
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .brand-mark::before {
+            width: 13px;
+            height: 13px;
+            left: 8px;
+            top: 8px;
+            border: 2px solid #fffaf3;
+        }
+
+        .brand-mark::after {
+            width: 2px;
+            height: 7px;
+            left: 14px;
+            top: 11px;
+            background: #fffaf3;
+            transform-origin: bottom;
+            transform: rotate(45deg);
         }
 
         .nav {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
             flex-wrap: wrap;
             justify-content: flex-end;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.93rem;
+            font-weight: 600;
         }
 
         .nav a:hover {
             color: var(--brand-strong);
         }
 
+        .nav-cta {
+            background: var(--text);
+            color: #fff !important;
+            border-radius: 999px;
+            padding: 8px 13px;
+        }
+
         .hero {
             position: relative;
-            padding: 92px 0 84px;
+            padding: 72px 0 54px;
             overflow: hidden;
             background:
-                radial-gradient(circle at 0% 0%, #dbeafe 0, transparent 48%),
-                radial-gradient(circle at 100% 100%, #bfdbfe 0, transparent 52%),
-                linear-gradient(135deg, #f8fbff 0%, #eef5ff 100%);
+                linear-gradient(110deg, rgba(217, 72, 15, 0.13) 0%, rgba(217, 72, 15, 0) 36%),
+                linear-gradient(245deg, rgba(15, 118, 110, 0.16) 0%, rgba(15, 118, 110, 0) 40%),
+                #fffaf1;
         }
 
         .hero-content {
-            max-width: 760px;
-            text-align: center;
-            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
+            gap: 54px;
+            align-items: center;
+        }
+
+        .hero-copy {
+            max-width: 660px;
         }
 
         .hero-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-size: 0.82rem;
-            letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--brand-strong);
-            background: #dbeafe;
-            border: 1px solid #bfdbfe;
+            font-weight: 800;
+            color: #784111;
+            background: #fff3cf;
+            border: 1px solid #efd389;
             border-radius: 999px;
-            padding: 6px 12px;
-            margin-bottom: 14px;
+            padding: 7px 13px;
+            margin-bottom: 18px;
         }
 
         h1 {
-            font-size: clamp(2rem, 4.5vw, 3.3rem);
-            line-height: 1.14;
+            font-size: clamp(2.55rem, 6vw, 5rem);
+            line-height: 0.98;
             margin-bottom: 16px;
+            letter-spacing: 0;
+            max-width: 720px;
         }
 
         .hero p {
             color: var(--text-muted);
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(1.05rem, 2vw, 1.24rem);
+            max-width: 620px;
         }
 
         .hero-actions {
-            margin-top: 28px;
+            margin-top: 30px;
             display: flex;
-            justify-content: center;
+            align-items: center;
             gap: 12px;
             flex-wrap: wrap;
         }
 
         .btn {
-            border-radius: 12px;
-            padding: 11px 16px;
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            border-radius: 8px;
+            padding: 12px 17px;
+            font-weight: 800;
             border: 1px solid transparent;
             transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
         }
@@ -144,19 +207,150 @@
         }
 
         .btn-primary {
-            background: var(--brand);
+            background: var(--text);
             color: #fff;
-            box-shadow: 0 10px 26px rgba(37, 99, 235, 0.24);
+            box-shadow: 0 14px 30px rgba(29, 27, 24, 0.22);
         }
 
         .btn-primary:hover {
-            background: var(--brand-strong);
+            background: #000;
         }
 
         .btn-secondary {
             background: #fff;
-            border-color: #cbd5e1;
-            color: #1e293b;
+            border-color: #d8cab8;
+            color: var(--text);
+        }
+
+        .hero-proof {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+            color: var(--text-muted);
+            font-size: 0.94rem;
+            font-weight: 650;
+        }
+
+        .hero-proof span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-proof span::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .app-preview {
+            justify-self: end;
+            width: min(100%, 390px);
+        }
+
+        .phone {
+            background: #1c1a17;
+            border-radius: 34px;
+            padding: 12px;
+            box-shadow: 0 28px 70px rgba(51, 39, 24, 0.24);
+            transform: rotate(1.5deg);
+        }
+
+        .screen {
+            min-height: 600px;
+            border-radius: 25px;
+            overflow: hidden;
+            background: #fffaf1;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .app-top {
+            padding: 22px 20px 14px;
+            background: linear-gradient(180deg, #fff6dc 0%, #fffaf1 100%);
+            border-bottom: 1px solid #eadfce;
+        }
+
+        .app-kicker {
+            color: var(--brand-strong);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .app-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .app-title strong {
+            font-size: 1.58rem;
+            line-height: 1.05;
+        }
+
+        .serve-time {
+            color: var(--accent);
+            font-weight: 850;
+            white-space: nowrap;
+        }
+
+        .timeline {
+            padding: 22px 20px 24px;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 14px;
+            align-items: stretch;
+            margin-bottom: 14px;
+        }
+
+        .timeline-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .time {
+            color: #7b746b;
+            font-size: 0.84rem;
+            font-weight: 800;
+            padding-top: 15px;
+        }
+
+        .step {
+            background: #fff;
+            border: 1px solid #eadfce;
+            border-left: 5px solid var(--brand);
+            border-radius: 8px;
+            padding: 13px 14px;
+            box-shadow: 0 8px 22px rgba(51, 39, 24, 0.07);
+        }
+
+        .step.accent {
+            border-left-color: var(--accent);
+        }
+
+        .step.gold {
+            border-left-color: var(--gold);
+        }
+
+        .step strong {
+            display: block;
+            color: var(--text);
+            font-size: 0.98rem;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .step span {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            font-weight: 600;
         }
 
         section {
@@ -174,6 +368,7 @@
             max-width: 720px;
             margin: 0 auto 36px;
             color: var(--text-muted);
+            font-size: 1.04rem;
         }
 
         .feature-grid {
@@ -186,12 +381,12 @@
             background: var(--surface);
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            padding: 22px;
+            padding: 24px;
             box-shadow: var(--shadow);
         }
 
         .card h3 {
-            color: var(--brand-strong);
+            color: var(--text);
             font-size: 1.12rem;
             margin-bottom: 8px;
         }
@@ -201,9 +396,12 @@
         }
 
         .pro-section {
-            background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%);
-            border-top: 1px solid #dbeafe;
-            border-bottom: 1px solid #dbeafe;
+            background: #1d1b18;
+            color: #fffaf1;
+        }
+
+        .pro-section .section-subtitle {
+            color: #c9bdae;
         }
 
         .pro-list {
@@ -215,10 +413,11 @@
         }
 
         .pro-list li {
-            background: var(--surface);
-            border: 1px solid #cfe0ff;
-            border-radius: 12px;
+            background: rgba(255, 250, 241, 0.07);
+            border: 1px solid rgba(255, 250, 241, 0.16);
+            border-radius: 8px;
             padding: 16px 18px;
+            color: #efe7da;
         }
 
         .faq-list {
@@ -239,7 +438,7 @@
         }
 
         .privacy-snippet h3 {
-            color: var(--brand-strong);
+            color: var(--text);
             margin-bottom: 8px;
         }
 
@@ -249,8 +448,8 @@
         }
 
         .contact {
-            background: #0f172a;
-            color: #dbe3f2;
+            background: #0f2f2b;
+            color: #e8fffb;
             padding: 74px 0;
         }
 
@@ -259,33 +458,33 @@
             margin: 0 auto;
             text-align: center;
             padding: 28px;
-            background: #111c34;
-            border: 1px solid #22304d;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius);
         }
 
         .contact-card h2 {
             margin-bottom: 10px;
-            color: #f8fafc;
+            color: #fff;
         }
 
         .contact-card p {
-            color: #9fb1d0;
+            color: #bfe5df;
         }
 
         .contact-card a {
             display: inline-block;
             margin-top: 18px;
-            color: #93c5fd;
+            color: #ffe2a3;
             font-weight: 600;
         }
 
         footer {
-            background: #0b1222;
-            color: #94a3b8;
+            background: #09211e;
+            color: #9ac3bc;
             text-align: center;
             padding: 22px 14px;
-            border-top: 1px solid #1f2b44;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         @media (max-width: 900px) {
@@ -298,6 +497,15 @@
             .nav {
                 justify-content: flex-start;
             }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 38px;
+            }
+
+            .app-preview {
+                justify-self: center;
+            }
         }
 
         @media (max-width: 640px) {
@@ -306,7 +514,38 @@
             }
 
             .hero {
-                padding: 72px 0 64px;
+                padding: 54px 0 56px;
+            }
+
+            .nav {
+                gap: 12px;
+            }
+
+            .nav-cta {
+                padding: 7px 11px;
+            }
+
+            .screen {
+                min-height: 520px;
+            }
+
+            .phone {
+                border-radius: 28px;
+                transform: none;
+            }
+
+            .screen {
+                border-radius: 20px;
+            }
+
+            .app-title {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .timeline-row {
+                grid-template-columns: 54px 1fr;
+                gap: 10px;
             }
 
             .card,
@@ -347,13 +586,14 @@
 <body>
     <header class="topbar">
         <div class="container topbar-inner">
-            <a href="#top" class="brand">Cooking Time</a>
+            <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span> Cooking Time</a>
             <nav class="nav">
                 <a href="#features">Features</a>
                 <a href="#pro">Pro</a>
                 <a href="#faq">FAQ</a>
                 <a href="#privacy">Privacy</a>
                 <a href="#contact">Contact</a>
+                <a class="nav-cta" href="https://apps.apple.com/us/app/cooking-time-planner/id6757248363" target="_blank" rel="noopener">App Store</a>
             </nav>
         </div>
     </header>
@@ -362,14 +602,72 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <span class="hero-badge">iOS App</span>
-                    <h1>Perfect Timing for Every Meal</h1>
-                    <p>
-                        Plan prep, cooking, and resting steps in one timeline so every dish is ready at the right moment.
-                    </p>
-                    <div class="hero-actions">
-                        <a class="btn btn-primary" href="#features">Explore Features</a>
-                        <a class="btn btn-secondary" href="privacy.html">Read Full Privacy Policy</a>
+                    <div class="hero-copy">
+                        <span class="hero-badge">Cooking timeline for iPhone</span>
+                        <h1>Every dish ready at the same time.</h1>
+                        <p>
+                            Cooking Time turns prep, cooking, resting, and serving into one clear schedule, so multi-dish meals feel controlled from the first chop to the final plate.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="https://apps.apple.com/us/app/cooking-time-planner/id6757248363" target="_blank" rel="noopener">Download on the App Store</a>
+                            <a class="btn btn-secondary" href="#features">Explore Features</a>
+                        </div>
+                        <div class="hero-proof" aria-label="App highlights">
+                            <span>Smart notifications</span>
+                            <span>Offline ready</span>
+                            <span>No tracking</span>
+                        </div>
+                    </div>
+
+                    <div class="app-preview" aria-label="Cooking Time app timeline preview">
+                        <div class="phone">
+                            <div class="screen">
+                                <div class="app-top">
+                                    <div class="app-kicker">Sunday dinner</div>
+                                    <div class="app-title">
+                                        <strong>Meal timeline</strong>
+                                        <span class="serve-time">Serve 6:30</span>
+                                    </div>
+                                </div>
+                                <div class="timeline">
+                                    <div class="timeline-row">
+                                        <div class="time">4:45</div>
+                                        <div class="step">
+                                            <strong>Prep vegetables</strong>
+                                            <span>Roast chicken and sides</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-row">
+                                        <div class="time">5:10</div>
+                                        <div class="step accent">
+                                            <strong>Chicken into oven</strong>
+                                            <span>Alert in 45 minutes</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-row">
+                                        <div class="time">5:45</div>
+                                        <div class="step gold">
+                                            <strong>Start potatoes</strong>
+                                            <span>Finish with herbs</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-row">
+                                        <div class="time">6:05</div>
+                                        <div class="step accent">
+                                            <strong>Rest chicken</strong>
+                                            <span>Gravy starts now</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-row">
+                                        <div class="time">6:30</div>
+                                        <div class="step">
+                                            <strong>Serve everything</strong>
+                                            <span>Dinner lands together</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
